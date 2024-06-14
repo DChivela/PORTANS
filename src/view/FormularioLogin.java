@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sigest.view;
+package view;
 
 import javax.swing.JOptionPane;
-import sigest.dao.FuncionariosDAO;
+import dao.FuncionariosDAO;
 
 /**
  *
@@ -44,7 +44,7 @@ public class FormularioLogin extends javax.swing.JFrame {
         setTitle("Login");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
@@ -56,7 +56,7 @@ public class FormularioLogin extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("SIGEST DC");
+        jLabel4.setText("PORT ANS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

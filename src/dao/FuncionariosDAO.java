@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import jdbc.ConexaoBanco;
 import model.Funcionarios;
 import view.AreaTrabalho;
-import sigest.view.FormularioLogin;
+import view.FormularioLogin;
 
 /**
  *
