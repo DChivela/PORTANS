@@ -5,11 +5,13 @@
  */
 package view;
 
+import dao.ContaineresDAO;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import dao.LocalizacaoDAO;
+import model.Containeres;
 import model.Localizacao;
 
 import sigest.utilitarios.Utilitarios;
@@ -23,21 +25,20 @@ public class FormLocalConteiner extends javax.swing.JFrame {
     /**
      * Creates new form FormularioClientes
      */
-    public void listar(){
+    public void listar() {
         LocalizacaoDAO dao = new LocalizacaoDAO();
         List<Localizacao> lista = dao.Listar();
         DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
         dados.setNumRows(0);
-        for(Localizacao l : lista ){
+        for (Localizacao l : lista) {
             dados.addRow(new Object[]{
-            l.getId(),
-            l.getConteiner(),
-            l.getData(),
-            l.getLocalizacao(),
-
-            });
+                l.getId(),
+                l.getConteiner(),
+                l.getData(),
+                l.getLocalizacao(),});
         }
     }
+
     public FormLocalConteiner() {
         initComponents();
     }
@@ -99,7 +100,7 @@ public class FormLocalConteiner extends javax.swing.JFrame {
             }
         });
 
-        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigest/imagens/Pesquisar_4.png"))); // NOI18N
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pesquisar_4.png"))); // NOI18N
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,7 +215,7 @@ public class FormLocalConteiner extends javax.swing.JFrame {
 
         jLabel15.setText("Nome");
 
-        btnPesquisaNome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigest/imagens/Pesquisar_4.png"))); // NOI18N
+        btnPesquisaNome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pesquisar_4.png"))); // NOI18N
         btnPesquisaNome.setText("Pesquisar");
         btnPesquisaNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,7 +249,7 @@ public class FormLocalConteiner extends javax.swing.JFrame {
                 .addComponent(txtPesquisaNome, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(btnPesquisaNome)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -268,7 +269,6 @@ public class FormLocalConteiner extends javax.swing.JFrame {
 
         Painel_Guias.addTab("Consultar Locais", jPanel3);
 
-        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigest/imagens/Novo_2.png"))); // NOI18N
         btnNovo.setText("NOVO");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,7 +276,6 @@ public class FormLocalConteiner extends javax.swing.JFrame {
             }
         });
 
-        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigest/imagens/Save_1.png"))); // NOI18N
         btnSalvar.setText("SALVAR");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,7 +283,6 @@ public class FormLocalConteiner extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigest/imagens/Edite_2.png"))); // NOI18N
         btnEditar.setText("EDITAR");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,7 +290,6 @@ public class FormLocalConteiner extends javax.swing.JFrame {
             }
         });
 
-        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigest/imagens/excluir.png"))); // NOI18N
         btnExcluir.setText("EXCLUIR");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -300,7 +297,6 @@ public class FormLocalConteiner extends javax.swing.JFrame {
             }
         });
 
-        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigest/imagens/Printer_2.png"))); // NOI18N
         btnImprimir.setText("IMPRIMIR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -373,72 +369,32 @@ public class FormLocalConteiner extends javax.swing.JFrame {
         List<Localizacao> lista = dao.Filtrar(nome);
         DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
         dados.setNumRows(0);
-        for(Localizacao l : lista ){
+        for (Localizacao l : lista) {
             dados.addRow(new Object[]{
-            l.getId(),
-            l.getConteiner(),
-            l.getData(),
-            l.getLocalizacao()
-            
+                l.getId(),
+                l.getConteiner(),
+                l.getData(),
+                l.getLocalizacao()
 
-            
             });
         }
     }//GEN-LAST:event_txtPesquisaNomeActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Localizacao obj = new Localizacao();
-        obj.setNome(txtNome.getText());
-        obj.setBi(txtBI.getText());
-        obj.setNif(txtNif.getText());
-        obj.setEmail(txtEmail.getText());
-        obj.setSenha(txtSenha.getText());
-        obj.setCargo(txtCargo.getText());
-        obj.setNivel_acesso(cbNivel.getSelectedItem().toString());
-        obj.setTelefone(txtTelefone.getText());
-        obj.setTelefone2(txtTelefone2.getText());
-        obj.setCodPostal(txtCodpostal.getText());
-        obj.setProvincia(txtProvincia.getText());
-        obj.setNumero(Integer.valueOf(txtNumero.getText()));
-        obj.setComplemento(txtComplemento.getText());
-        obj.setBairro(txtBairro.getText());
-        obj.setCidade(txtCidade.getText());
-        obj.setId_conteiner(cbConteiner.getSelectedItem().toString());
-        
-        FuncionariosDAO dao = new FuncionariosDAO();
+        obj.setConteiner((Containeres) cbConteiner.getSelectedItem());
+        obj.setData(txtData.getText());
+        obj.setLocalizacao(txtLocalizacao.getText());
+
+        LocalizacaoDAO dao = new LocalizacaoDAO();
         dao.Salvar(obj);
         Utilitarios util = new Utilitarios();
         util.LimpaTela(painelDadosPessoais);
-        
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-       String nome = txtNome.getText();
-       Funcionarios obj = new Funcionarios();
-       FuncionariosDAO dao = new FuncionariosDAO();
-       
-       obj = dao.BuscarFuncionarios(nome);
-       if(obj.getNome() != null ){
-           txtCodigo.setText(String.valueOf(obj.getId()));
-           txtNome.setText(obj.getNome());
-           txtBI.setText(obj.getBi());
-           txtNif.setText(obj.getNif());
-           txtEmail.setText(obj.getEmail());
-           txtSenha.setText(obj.getSenha());
-           txtCargo.setText(obj.getCargo());
-           cbNivel.setSelectedItem(obj.getNivel_acesso());
-           txtTelefone.setText(obj.getTelefone());
-           txtTelefone2.setText(obj.getTelefone2());
-           txtCodpostal.setText(obj.getCodPostal());
-           txtProvincia.setText(obj.getProvincia());
-           txtNumero.setText(String.valueOf(obj.getNumero()));
-           txtComplemento.setText(obj.getComplemento());
-           txtBairro.setText(obj.getBairro());
-           txtCidade.setText(obj.getCidade());
-           cbPais.setSelectedItem(obj.getPais());
-       }else{
-           JOptionPane.showMessageDialog(null,"Funcionário não encontrado!");
-       }
+
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -448,91 +404,48 @@ public class FormLocalConteiner extends javax.swing.JFrame {
 
     private void btnPesquisaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaNomeActionPerformed
         // Método para pesquisar e filtrar os dados da tabela pelo botão Pesquisar.
-        String nome = "%"+txtPesquisaNome.getText()+"%";
-        FuncionariosDAO dao = new FuncionariosDAO();
-        List<Funcionarios> lista = dao.Filtrar(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
-        dados.setNumRows(0);
-        for(Funcionarios c : lista ){
-            dados.addRow(new Object[]{
-            c.getId(),
-            c.getNome(),
-            c.getBi(),
-            c.getNif(),
-            c.getEmail(),
-            c.getSenha(),
-            c.getCargo(),
-            c.getNivel_acesso(),
-            c.getTelefone(),
-            c.getTelefone2(),
-            c.getCodPostal(),
-            c.getProvincia(),
-            c.getNumero(),
-            c.getComplemento(),
-            c.getBairro(),
-            c.getCidade(),
-            c.getPais()
-            
-            });
-        }
 
     }//GEN-LAST:event_btnPesquisaNomeActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Funcionarios obj = new Funcionarios();
-        obj.setNome(txtNome.getText());
-        obj.setBi(txtBI.getText());
-        obj.setNif(txtNif.getText());
-        obj.setEmail(txtEmail.getText());
-        obj.setSenha(txtSenha.getText());
-        obj.setCargo(txtCargo.getText());
-        obj.setNivel_acesso(cbNivel.getSelectedItem().toString());
-        obj.setTelefone(txtTelefone.getText());
-        obj.setTelefone2(txtTelefone2.getText());
-        obj.setCodPostal(txtCodpostal.getText());
-        obj.setProvincia(txtProvincia.getText());
-        obj.setNumero(Integer.valueOf(txtNumero.getText()));
-        obj.setComplemento(txtComplemento.getText());
-        obj.setBairro(txtBairro.getText());
-        obj.setCidade(txtCidade.getText());
-        obj.setPais(cbPais.getSelectedItem().toString());
+        Localizacao obj = new Localizacao();
+        Containeres c = new Containeres();
+        c = (Containeres) cbConteiner.getSelectedItem(); //Tratamento do dado do combobox
+        obj.setConteiner(c);
+        obj.setData(txtData.getText());
+        obj.setLocalizacao(txtLocalizacao.getText());
         obj.setId(Integer.valueOf(txtCodigo.getText()));
-        
-        FuncionariosDAO dao = new FuncionariosDAO();
-        dao.Editar(obj);
+
+        LocalizacaoDAO daop = new LocalizacaoDAO();
+        daop.Editar(obj);
         Utilitarios util = new Utilitarios();
         util.LimpaTela(painelDadosPessoais);
-      
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        Funcionarios obj = new Funcionarios();
+        Localizacao obj = new Localizacao();
         obj.setId(Integer.valueOf(txtCodigo.getText()));
-        FuncionariosDAO dao = new FuncionariosDAO();
-        dao.Excluir(obj);
+        LocalizacaoDAO daop = new LocalizacaoDAO();
+        daop.Excluir(obj);
         Utilitarios util = new Utilitarios();
-        util.LimpaTela(painelDadosPessoais );
+        util.LimpaTela(painelDadosPessoais);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        //Preencher o editor das localizações com as informações da tabela
         Painel_Guias.setSelectedIndex(0);
         txtCodigo.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
-        txtNome.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
-        txtBI.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
-        txtNif.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
-        txtEmail.setText(tabela.getValueAt(tabela.getSelectedRow(), 4).toString());
-        txtSenha.setText(tabela.getValueAt(tabela.getSelectedRow(), 5).toString());
-        txtCargo.setText(tabela.getValueAt(tabela.getSelectedRow(), 6).toString());
-        cbNivel.setSelectedItem(tabela.getValueAt(tabela.getSelectedRow(), 7).toString());
-        txtTelefone.setText(tabela.getValueAt(tabela.getSelectedRow(), 8).toString());
-        txtTelefone2.setText(tabela.getValueAt(tabela.getSelectedRow(), 9).toString());
-        txtCodpostal.setText(tabela.getValueAt(tabela.getSelectedRow(), 10).toString());
-        txtProvincia.setText(tabela.getValueAt(tabela.getSelectedRow(), 11).toString());
-        txtNumero.setText(tabela.getValueAt(tabela.getSelectedRow(), 12).toString());
-        txtComplemento.setText(tabela.getValueAt(tabela.getSelectedRow(), 10).toString());
-        txtBairro.setText(tabela.getValueAt(tabela.getSelectedRow(), 13).toString());
-        txtCidade.setText(tabela.getValueAt(tabela.getSelectedRow(), 14).toString());
-        cbPais.setSelectedItem(tabela.getValueAt(tabela.getSelectedRow(), 15).toString());
+        cbConteiner.setSelectedItem(tabela.getValueAt(tabela.getSelectedRow(), 15).toString());
+        txtData.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+        txtLocalizacao.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+
+        Containeres c = new Containeres();
+        ContaineresDAO daof = new ContaineresDAO();
+        c = daof.BuscarContaineres(tabela.getValueAt(tabela.getSelectedRow(), 4).toString());
+        cbConteiner.removeAllItems();
+        cbConteiner.getModel().setSelectedItem(c);
+
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void txtPesquisaNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaNomeKeyPressed
@@ -540,34 +453,34 @@ public class FormLocalConteiner extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisaNomeKeyPressed
 
     private void txtPesquisaNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaNomeKeyReleased
- // Método para pesquisar e filtrar os dados da tabela pelo botão Pesquisar.
-        String nome = "%"+txtPesquisaNome.getText()+"%";
-        FuncionariosDAO dao = new FuncionariosDAO();
-        List<Funcionarios> lista = dao.Filtrar(nome);
-        DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
-        dados.setNumRows(0);
-        for(Funcionarios c : lista ){
-            dados.addRow(new Object[]{
-            c.getId(),
-            c.getNome(),
-            c.getBi(),
-            c.getNif(),
-            c.getEmail(),
-            c.getSenha(),
-            c.getCargo(),
-            c.getNivel_acesso(),
-            c.getTelefone(),
-            c.getTelefone2(),
-            c.getCodPostal(),
-            c.getProvincia(),
-            c.getNumero(),
-            c.getComplemento(),
-            c.getBairro(),
-            c.getCidade(),
-            c.getPais()
-            
-            });
-        }     
+        // Método para pesquisar e filtrar os dados da tabela pelo botão Pesquisar.
+//        String nome = "%"+txtPesquisaNome.getText()+"%";
+//        FuncionariosDAO dao = new FuncionariosDAO();
+//        List<Funcionarios> lista = dao.Filtrar(nome);
+//        DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
+//        dados.setNumRows(0);
+//        for(Funcionarios c : lista ){
+//            dados.addRow(new Object[]{
+//            c.getId(),
+//            c.getNome(),
+//            c.getBi(),
+//            c.getNif(),
+//            c.getEmail(),
+//            c.getSenha(),
+//            c.getCargo(),
+//            c.getNivel_acesso(),
+//            c.getTelefone(),
+//            c.getTelefone2(),
+//            c.getCodPostal(),
+//            c.getProvincia(),
+//            c.getNumero(),
+//            c.getComplemento(),
+//            c.getBairro(),
+//            c.getCidade(),
+//            c.getPais()
+//            
+//            });
+//        }     
     }//GEN-LAST:event_txtPesquisaNomeKeyReleased
 
     private void cbConteinerAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbConteinerAncestorAdded
@@ -575,11 +488,11 @@ public class FormLocalConteiner extends javax.swing.JFrame {
     }//GEN-LAST:event_cbConteinerAncestorAdded
 
     private void cbConteinerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbConteinerMouseClicked
-        FornecedoresDAO dao = new FornecedoresDAO();
-        List<Conteineres> lista = dao.Listar();
-        cbFornecedor.removeAllItems();
-        for(Conteineres f : lista){
-            cbFornecedor.addItem(f);
+        ContaineresDAO dao = new ContaineresDAO();
+        List<Containeres> lista = dao.Listar();
+        cbConteiner.removeAllItems();
+        for(Containeres c : lista){
+            cbConteiner.addItem(c);
         }
     }//GEN-LAST:event_cbConteinerMouseClicked
 
