@@ -1,0 +1,11 @@
+sigest.view.AreaTrabalho$4
+sigest.view.AreaTrabalho$5
+sigest.view.AreaTrabalho$2
+sigest.view.AreaTrabalho$3
+sigest.view.AreaTrabalho$1
+sigest.view.AreaTrabalho$8
+sigest.view.AreaTrabalho$9
+sigest.view.AreaTrabalho$6
+sigest.view.AreaTrabalho$10
+sigest.view.AreaTrabalho$7
+sigest.view.AreaTrabalho
