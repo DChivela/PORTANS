@@ -74,4 +74,9 @@ public class Containeres {
         this.destino = destino;
     }
     
+        @Override
+            public String toString(){
+                return this.getNumContainer();
+            }
+    
 }

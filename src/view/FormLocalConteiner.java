@@ -11,6 +11,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import dao.LocalizacaoDAO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import model.Containeres;
 import model.Localizacao;
 
@@ -33,7 +35,7 @@ public class FormLocalConteiner extends javax.swing.JFrame {
         for (Localizacao l : lista) {
             dados.addRow(new Object[]{
                 l.getId(),
-                l.getConteiner(),
+                l.getConteiner().getNumContainer(),
                 l.getData(),
                 l.getLocalizacao(),});
         }
@@ -384,6 +386,10 @@ public class FormLocalConteiner extends javax.swing.JFrame {
         Localizacao obj = new Localizacao();
         obj.setConteiner((Containeres) cbConteiner.getSelectedItem());
         obj.setData(txtData.getText());
+        Date agora = new Date(); //Obtendo a data do sistema.
+        SimpleDateFormat dataEUA = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss"); //Salvando a data obtida no formato Americano.
+        String dataMysql = dataEUA.format(agora); //Mudando o nome para Mysql 
+        obj.setData(dataMysql); //Salvando o valor armazenda no formato acima.
         obj.setLocalizacao(txtLocalizacao.getText());
 
         LocalizacaoDAO dao = new LocalizacaoDAO();
@@ -400,6 +406,10 @@ public class FormLocalConteiner extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // Parte priorizada antes ser executada qualquer coisa no código.
         listar();
+        Date agora = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/YYY | HH:mm:ss");
+        String dataFormatada = formato.format(agora);
+        txtData.setText(dataFormatada);
     }//GEN-LAST:event_formWindowActivated
 
     private void btnPesquisaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaNomeActionPerformed
@@ -484,16 +494,21 @@ public class FormLocalConteiner extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPesquisaNomeKeyReleased
 
     private void cbConteinerAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbConteinerAncestorAdded
-
-    }//GEN-LAST:event_cbConteinerAncestorAdded
-
-    private void cbConteinerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbConteinerMouseClicked
         ContaineresDAO dao = new ContaineresDAO();
         List<Containeres> lista = dao.Listar();
         cbConteiner.removeAllItems();
-        for(Containeres c : lista){
+        for (Containeres c : lista) {
             cbConteiner.addItem(c);
-        }
+            }
+    }//GEN-LAST:event_cbConteinerAncestorAdded
+
+    private void cbConteinerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbConteinerMouseClicked
+//        ContaineresDAO dao = new ContaineresDAO();
+//        List<Containeres> lista = dao.Listar();
+//        cbConteiner.removeAllItems();
+//        for (Containeres c : lista) {
+//            cbConteiner.addItem(c);
+//        }
     }//GEN-LAST:event_cbConteinerMouseClicked
 
     /**

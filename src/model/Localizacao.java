@@ -46,5 +46,7 @@ public class Localizacao {
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
     }
+    
+
 
 }
