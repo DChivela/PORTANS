@@ -13,58 +13,54 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import jdbc.ConexaoBanco;
-import model.Funcionarios;
-import view.AreaTrabalho;
-import sigest.view.FormularioLogin;
+import model.Clientes;
 
 /**
  *
  * @author domin
  */
-public class FuncionariosDAO {
-   private Connection conn;
+public class ClientesDAO {
+    //Método construtor
+    private Connection conn;
    
-   public FuncionariosDAO(){
+   public ClientesDAO(){
        this.conn = new ConexaoBanco().pegarConexao();  
    }
    
-   public void Salvar(Funcionarios obj){
+   public void Salvar(Clientes obj){
        try {
            //1º Criar o SQL
-           String sql = "insert into tb_funcionarios (nome, bi, nif, email,senha, cargo, nivel_acesso, telefone, telefone2, codPostal, provincia, numero, complemento, bairro, cidade, pais)"
-                   + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+           String sql = "insert into tb_clientes (nome, bi, nif, email, telefone, telefone2, codPostal, provincia, numero, complemento, bairro, cidade, pais)"
+                   + "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
            //2ºPreparar a conexão SQL para se conectar com o Banco
            PreparedStatement stmt = conn.prepareStatement(sql);
            stmt.setString(1,obj.getNome());
            stmt.setString(2,obj.getBi());
            stmt.setString(3,obj.getNif());
            stmt.setString(4,obj.getEmail());
-           stmt.setString(5,obj.getSenha());
-           stmt.setString(6,obj.getCargo());
-           stmt.setString(7,obj.getNivel_acesso());
-           stmt.setString(8,obj.getTelefone());
-           stmt.setString(9,obj.getTelefone2());
-           stmt.setString(10,obj.getCodPostal());
-           stmt.setString(11,obj.getProvincia());
-           stmt.setInt(12,obj.getNumero());
-           stmt.setString(13,obj.getComplemento());
-           stmt.setString(14,obj.getBairro());
-           stmt.setString(15,obj.getCidade());
-           stmt.setString(16,obj.getPais());
+           stmt.setString(5,obj.getTelefone());
+           stmt.setString(6,obj.getTelefone2());
+           stmt.setString(7,obj.getCodPostal());
+           stmt.setString(8,obj.getProvincia());
+           stmt.setInt(9,obj.getNumero());
+           stmt.setString(10,obj.getComplemento());
+           stmt.setString(11,obj.getBairro());
+           stmt.setString(12,obj.getCidade());
+           stmt.setString(13,obj.getPais());
            //3ºExecutar 
            stmt.execute();
            //4ºFechar conexão
            stmt.close();
-           JOptionPane.showMessageDialog(null, "Funcionarios cadastrado com sucesso!");
+           JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
        } catch (SQLException e) {
-           JOptionPane.showMessageDialog(null, "Erro ao salvar o funcionarios"+e);
+           JOptionPane.showMessageDialog(null, "Erro ao salvar o cliente"+e);
        }
    }
    
-      public void Editar(Funcionarios obj){
+      public void Editar(Clientes obj){
        try {
            //1º Criar o SQL
-           String sql = "update tb_Funcionarios set nome=?, bi=?, nif=?, email=?, senha=?, cargo=?, nivel_acesso=?, telefone=?, telefone2=?, codPostal=?, provincia=?,"
+           String sql = "update tb_clientes set nome=?, bi=?, nif=?, email=?, telefone=?, telefone2=?, codPostal=?, provincia=?,"
                    +"numero=?, complemento=?, bairro=?, cidade=?, pais=? where id=?";
            //2ºPreparar a conexão SQL para se conectar com o Banco
            PreparedStatement stmt = conn.prepareStatement(sql);
@@ -72,58 +68,52 @@ public class FuncionariosDAO {
            stmt.setString(2,obj.getBi());
            stmt.setString(3,obj.getNif());
            stmt.setString(4,obj.getEmail());
-           stmt.setString(5,obj.getSenha());
-           stmt.setString(6,obj.getCargo());
-           stmt.setString(7,obj.getNivel_acesso());
-           stmt.setString(8,obj.getTelefone());
-           stmt.setString(9,obj.getTelefone2());
-           stmt.setString(10,obj.getCodPostal());
-           stmt.setString(11,obj.getProvincia());
-           stmt.setInt(12,obj.getNumero());
-           stmt.setString(13,obj.getComplemento());
-           stmt.setString(14,obj.getBairro());
-           stmt.setString(15,obj.getCidade());
-           stmt.setString(16,obj.getPais());
-           stmt.setInt(17,obj.getId());
+           stmt.setString(5,obj.getTelefone());
+           stmt.setString(6,obj.getTelefone2());
+           stmt.setString(7,obj.getCodPostal());
+           stmt.setString(8,obj.getProvincia());
+           stmt.setInt(9,obj.getNumero());
+           stmt.setString(10,obj.getComplemento());
+           stmt.setString(11,obj.getBairro());
+           stmt.setString(12,obj.getCidade());
+           stmt.setString(13,obj.getPais());
+           stmt.setInt(14,obj.getId());
            //3ºExecutar 
            stmt.execute();
            //4ºFechar conexão
            stmt.close();
-           JOptionPane.showMessageDialog(null, "Funcionario editado com sucesso!");
+           JOptionPane.showMessageDialog(null, "Cliente editado com sucesso!");
        } catch (SQLException e) {
-           JOptionPane.showMessageDialog(null, "Erro ao editar o funcionario"+e);
+           JOptionPane.showMessageDialog(null, "Erro ao editar o cliente"+e);
        }
    }
       
-      public void Excluir(Funcionarios obj){
+      public void Excluir(Clientes obj){
           try {
-              String sql = "delete from tb_Funcionarios where id=?";
+              String sql = "delete from tb_clientes where id=?";
               PreparedStatement stmt = conn.prepareStatement(sql);
               stmt.setInt(1, obj.getId());
               stmt.execute();
               stmt.close();
-              JOptionPane.showMessageDialog(null, "Funcionario exluido com sucesso!");
+              JOptionPane.showMessageDialog(null, "Cliente exluido com sucesso!");
           } catch (SQLException e) {
-              JOptionPane.showMessageDialog(null,"Erro ao excluir o Funcionario"+e);
+              JOptionPane.showMessageDialog(null,"Erro ao excluir o cliente"+e);
           }
       }
    
-   public Funcionarios BuscarFuncionarios(String nome){
+   public Clientes BuscarCliente(String nome){
        try {
-           String sql = "select * from tb_Funcionarios where nome =?";
+           String sql = "select * from tb_clientes where nome =?";
            PreparedStatement stmt = conn.prepareStatement(sql);
            stmt.setString(1, nome);
            ResultSet rs = stmt.executeQuery();
-           Funcionarios obj = new Funcionarios();
+           Clientes obj = new Clientes();
            if(rs.next()){
                obj.setId(rs.getInt("id"));
                obj.setNome(rs.getString("Nome"));
                obj.setBi(rs.getString("Bi"));
                obj.setNif(rs.getString("Nif"));
                obj.setEmail(rs.getString("Email"));
-               obj.setSenha(rs.getString("Senha"));
-               obj.setCargo(rs.getString("Cargo"));
-               obj.setNivel_acesso(rs.getString("Nivel_Acesso"));
                obj.setTelefone(rs.getString("Telefone"));
                obj.setTelefone2(rs.getString("Telefone2"));
                obj.setCodPostal(rs.getString("codPostal"));
@@ -137,28 +127,57 @@ public class FuncionariosDAO {
            return obj; //Retornar o objecto Cliente após a busca
            
        } catch (SQLException erro) { //Caso alguma coisa deia errado
-           JOptionPane.showMessageDialog(null, "Erro ao buscar o funcionario"+ erro);
+           JOptionPane.showMessageDialog(null, "Erro ao buscar o cliente"+ erro);
        }
        return null;
     }
-   //Método para listar os clientes do Banco
-   public List<Funcionarios>Listar(){
-       List<Funcionarios> lista = new ArrayList<>();
+   
+   public Clientes BuscarClienteNIF(String Nif){
        try {
-           String sql = "Select * from tb_funcionarios";
+           String sql = "select * from tb_clientes where Nif = ?";
            PreparedStatement stmt = conn.prepareStatement(sql);
+           stmt.setString(1, Nif);
            ResultSet rs = stmt.executeQuery();
-           
-           while(rs.next()){
-               Funcionarios obj = new Funcionarios();
+           Clientes obj = new Clientes();
+           if(rs.next()){
                obj.setId(rs.getInt("id"));
                obj.setNome(rs.getString("Nome"));
                obj.setBi(rs.getString("Bi"));
                obj.setNif(rs.getString("Nif"));
                obj.setEmail(rs.getString("Email"));
-               obj.setSenha(rs.getString("Senha"));
-               obj.setCargo(rs.getString("Cargo"));
-               obj.setNivel_acesso(rs.getString("Nivel_acesso"));
+               obj.setTelefone(rs.getString("Telefone"));
+               obj.setTelefone2(rs.getString("Telefone2"));
+               obj.setCodPostal(rs.getString("codPostal"));
+               obj.setProvincia(rs.getString("Provincia"));
+               obj.setNumero(rs.getInt("numero"));
+               obj.setComplemento(rs.getString("Complemento"));
+               obj.setBairro(rs.getString("Bairro"));
+               obj.setCidade(rs.getString("Cidade"));
+               obj.setPais(rs.getString("Pais"));  
+           }//Fechamento do preechimento automático
+           return obj; //Retornar o objecto Cliente após a busca
+           
+       } catch (SQLException erro) { //Caso alguma coisa deia errado
+           JOptionPane.showMessageDialog(null, "Erro ao buscar o cliente"+ erro);
+       }
+       return null;
+    }
+   
+   //Método para listar os clientes do Banco
+   public List<Clientes>Listar(){
+       List<Clientes> lista = new ArrayList<>();
+       try {
+           String sql = "Select * from tb_clientes";
+           PreparedStatement stmt = conn.prepareStatement(sql);
+           ResultSet rs = stmt.executeQuery();
+           
+           while(rs.next()){
+               Clientes obj = new Clientes();
+               obj.setId(rs.getInt("id"));
+               obj.setNome(rs.getString("Nome"));
+               obj.setBi(rs.getString("Bi"));
+               obj.setNif(rs.getString("Nif"));
+               obj.setEmail(rs.getString("Email"));
                obj.setTelefone(rs.getString("Telefone"));
                obj.setTelefone2(rs.getString("Telefone2"));
                obj.setCodPostal(rs.getString("codPostal"));
@@ -176,24 +195,21 @@ public class FuncionariosDAO {
        }
        return null;
    }
-      public List<Funcionarios>Filtrar(String nome){
-       List<Funcionarios> lista = new ArrayList<>();
+      public List<Clientes>Filtrar(String nome){
+       List<Clientes> lista = new ArrayList<>();
        try {
-           String sql = "Select * from tb_Funcionarios where nome like ?";
+           String sql = "Select * from tb_clientes where nome like ?";
            PreparedStatement stmt = conn.prepareStatement(sql);
            stmt.setString(1, nome);
            ResultSet rs = stmt.executeQuery();
            
            while(rs.next()){
-               Funcionarios obj = new Funcionarios();
+               Clientes obj = new Clientes();
                obj.setId(rs.getInt("id"));
                obj.setNome(rs.getString("Nome"));
                obj.setBi(rs.getString("Bi"));
                obj.setNif(rs.getString("Nif"));
                obj.setEmail(rs.getString("Email"));
-               obj.setSenha(rs.getString("Senha"));
-               obj.setCargo(rs.getString("Cargo"));
-               obj.setNivel_acesso(rs.getString("Nivel_acesso"));
                obj.setTelefone(rs.getString("Telefone"));
                obj.setTelefone2(rs.getString("Telefone2"));
                obj.setCodPostal(rs.getString("codPostal"));
@@ -210,43 +226,8 @@ public class FuncionariosDAO {
            JOptionPane.showMessageDialog(null, "Erro ao criar a lista."+e);
        }
        return null;
-    }
-public void efectuarLogin(String email, String senha){
-    try {
-        String sql = "select * from tb_funcionarios where email=? and senha=?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, email);
-        stmt.setString(2, senha);
-        
-        ResultSet rs = stmt.executeQuery();
-        if(rs.next()){
-            JOptionPane.showMessageDialog(null, "Seja bem-vindo ao sistema!");
-            AreaTrabalho at = new AreaTrabalho();
-            at.setVisible(true);
-        } else{
-            FormularioLogin login = new FormularioLogin();
-            JOptionPane.showMessageDialog(null, "Dados Inválidos!");
-            login.setVisible(true);
-        }
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Erro:"+e);
-    }
-}
+   }
 
-public void AdicionarStock(int StockNovo, int id){
-    try {
-        String sql = "update tb_produtos set qtd_stock=? where id=?";
-        PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setInt(1, StockNovo);
-        stmt.setInt(2, id);
-        stmt.execute();
-        stmt.close();
-        JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
-        
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Erro ao adicionar ao stock"+e);
-    }
-}
 
 }
 
