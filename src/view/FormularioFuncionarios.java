@@ -9,9 +9,9 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import dao.ClientesDAO;
+import dao.MasterDAO;
 import dao.FuncionariosDAO;
-import model.Clientes;
+import model.Master;
 import model.Funcionarios;
 import sigest.utilitarios.Utilitarios;
 

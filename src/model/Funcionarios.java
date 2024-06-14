@@ -9,7 +9,7 @@ package model;
  *
  * @author Admin
  */
-public class Funcionarios extends Clientes {
+public class Funcionarios extends Master {
     private String senha;
     private String cargo;
     private String nivel_acesso;

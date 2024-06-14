@@ -13,21 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import jdbc.ConexaoBanco;
-import model.Clientes;
+import model.Master;
 
 /**
  *
  * @author domin
  */
-public class ClientesDAO {
+public class MasterDAO {
     //Método construtor
     private Connection conn;
    
-   public ClientesDAO(){
+   public MasterDAO(){
        this.conn = new ConexaoBanco().pegarConexao();  
    }
    
-   public void Salvar(Clientes obj){
+   public void Salvar(Master obj){
        try {
            //1º Criar o SQL
            String sql = "insert into tb_clientes (nome, bi, nif, email, telefone, telefone2, codPostal, provincia, numero, complemento, bairro, cidade, pais)"
@@ -57,7 +57,7 @@ public class ClientesDAO {
        }
    }
    
-      public void Editar(Clientes obj){
+      public void Editar(Master obj){
        try {
            //1º Criar o SQL
            String sql = "update tb_clientes set nome=?, bi=?, nif=?, email=?, telefone=?, telefone2=?, codPostal=?, provincia=?,"
@@ -88,7 +88,7 @@ public class ClientesDAO {
        }
    }
       
-      public void Excluir(Clientes obj){
+      public void Excluir(Master obj){
           try {
               String sql = "delete from tb_clientes where id=?";
               PreparedStatement stmt = conn.prepareStatement(sql);
@@ -101,13 +101,13 @@ public class ClientesDAO {
           }
       }
    
-   public Clientes BuscarCliente(String nome){
+   public Master BuscarCliente(String nome){
        try {
            String sql = "select * from tb_clientes where nome =?";
            PreparedStatement stmt = conn.prepareStatement(sql);
            stmt.setString(1, nome);
            ResultSet rs = stmt.executeQuery();
-           Clientes obj = new Clientes();
+           Master obj = new Master();
            if(rs.next()){
                obj.setId(rs.getInt("id"));
                obj.setNome(rs.getString("Nome"));
@@ -132,13 +132,13 @@ public class ClientesDAO {
        return null;
     }
    
-   public Clientes BuscarClienteNIF(String Nif){
+   public Master BuscarClienteNIF(String Nif){
        try {
            String sql = "select * from tb_clientes where Nif = ?";
            PreparedStatement stmt = conn.prepareStatement(sql);
            stmt.setString(1, Nif);
            ResultSet rs = stmt.executeQuery();
-           Clientes obj = new Clientes();
+           Master obj = new Master();
            if(rs.next()){
                obj.setId(rs.getInt("id"));
                obj.setNome(rs.getString("Nome"));
@@ -164,15 +164,15 @@ public class ClientesDAO {
     }
    
    //Método para listar os clientes do Banco
-   public List<Clientes>Listar(){
-       List<Clientes> lista = new ArrayList<>();
+   public List<Master>Listar(){
+       List<Master> lista = new ArrayList<>();
        try {
            String sql = "Select * from tb_clientes";
            PreparedStatement stmt = conn.prepareStatement(sql);
            ResultSet rs = stmt.executeQuery();
            
            while(rs.next()){
-               Clientes obj = new Clientes();
+               Master obj = new Master();
                obj.setId(rs.getInt("id"));
                obj.setNome(rs.getString("Nome"));
                obj.setBi(rs.getString("Bi"));
@@ -195,8 +195,8 @@ public class ClientesDAO {
        }
        return null;
    }
-      public List<Clientes>Filtrar(String nome){
-       List<Clientes> lista = new ArrayList<>();
+      public List<Master>Filtrar(String nome){
+       List<Master> lista = new ArrayList<>();
        try {
            String sql = "Select * from tb_clientes where nome like ?";
            PreparedStatement stmt = conn.prepareStatement(sql);
@@ -204,7 +204,7 @@ public class ClientesDAO {
            ResultSet rs = stmt.executeQuery();
            
            while(rs.next()){
-               Clientes obj = new Clientes();
+               Master obj = new Master();
                obj.setId(rs.getInt("id"));
                obj.setNome(rs.getString("Nome"));
                obj.setBi(rs.getString("Bi"));

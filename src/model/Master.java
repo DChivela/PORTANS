@@ -9,7 +9,7 @@ package model;
  *
  * @author domin
  */
-public class Clientes {
+public class Master {
     private int id;
     private String nome;
     private String bi;
