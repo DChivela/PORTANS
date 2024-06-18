@@ -42,12 +42,17 @@ public class AreaTrabalho extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
@@ -95,22 +100,25 @@ public class AreaTrabalho extends javax.swing.JFrame {
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Container.png"))); // NOI18N
         jMenu2.setText("Conteineres");
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Registos de Conteineres");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem2);
+        jMenu5.setText("Meus Conteineres");
 
-        jMenuItem12.setText("Localizar Conteineres");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem6.setText("Localizar Conteineres");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
+                jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem12);
+        jMenu5.add(jMenuItem6);
+
+        jMenuItem7.setText("Registos de Conteineres");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem7);
+
+        jMenu2.add(jMenu5);
 
         jMenuBar1.add(jMenu2);
 
@@ -131,10 +139,40 @@ public class AreaTrabalho extends javax.swing.JFrame {
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/BarcoAzul.png"))); // NOI18N
         jMenu4.setText("Navios");
 
-        jMenu8.setText("Meus Produtos");
+        jMenu8.setText("Ficha de Navios");
+
+        jMenuItem4.setText("Info. Gerais");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem4);
+
+        jMenuItem5.setText("Consulta");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem5);
+
         jMenu4.add(jMenu8);
 
         jMenuBar1.add(jMenu4);
+
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Funcionario_2.png"))); // NOI18N
+        jMenu9.setText("Funcionários");
+
+        jMenuItem2.setText("Ficha de Funcionários");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu9);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Config.png"))); // NOI18N
         jMenu6.setText("Configurações");
@@ -179,20 +217,36 @@ public class AreaTrabalho extends javax.swing.JFrame {
         this.setExtendedState(this.MAXIMIZED_BOTH);
     }//GEN-LAST:event_formWindowActivated
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        FormularioContainer fc = new FormularioContainer();
-        fc.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-//        FormularioFornecedores fr = new FormularioFornecedores();
-//        fr.setVisible(true);
+        FormularioMovimenta fm = new FormularioMovimenta();
+        fm.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        FormLocalConteiner fl = new FormLocalConteiner();
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        FormularioNavios fn = new FormularioNavios();
+        fn.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        FormularioNavios ConsultaProdutos = new FormularioNavios();
+        ConsultaProdutos.Painel_Guias.setSelectedIndex(1); //O Painel_Guias deve estar como método público para ser acessado por este formulário
+        ConsultaProdutos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        FormLocalConteiner fl = new FormLocalConteiner(); //Comando para chamar a janela do formulário de localizações de conteineres
         fl.setVisible(true);
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        FormularioContainer fc = new FormularioContainer(); //Comando para chamar a janela do formulário de Conteineres
+        fc.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        FormularioFuncionarios ff = new FormularioFuncionarios(); //Comando para chamar a janela do formulário de funcionários
+        ff.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,15 +288,20 @@ public class AreaTrabalho extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane painelDesktop;
     // End of variables declaration//GEN-END:variables

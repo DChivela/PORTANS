@@ -104,6 +104,7 @@ public class FormLocalConteiner extends javax.swing.JFrame {
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pesquisar_4.png"))); // NOI18N
         btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setEnabled(false);
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -201,6 +202,7 @@ public class FormLocalConteiner extends javax.swing.JFrame {
 
         Painel_Guias.addTab("Dados da Localização", painelDadosPessoais);
 
+        txtPesquisaNome.setEnabled(false);
         txtPesquisaNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisaNomeActionPerformed(evt);
@@ -215,10 +217,12 @@ public class FormLocalConteiner extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("Nome");
+        jLabel15.setText("Número");
+        jLabel15.setEnabled(false);
 
         btnPesquisaNome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pesquisar_4.png"))); // NOI18N
         btnPesquisaNome.setText("Pesquisar");
+        btnPesquisaNome.setEnabled(false);
         btnPesquisaNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisaNomeActionPerformed(evt);
@@ -300,6 +304,7 @@ public class FormLocalConteiner extends javax.swing.JFrame {
         });
 
         btnImprimir.setText("IMPRIMIR");
+        btnImprimir.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -446,9 +451,9 @@ public class FormLocalConteiner extends javax.swing.JFrame {
         //Preencher o editor das localizações com as informações da tabela
         Painel_Guias.setSelectedIndex(0);
         txtCodigo.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
-        cbConteiner.setSelectedItem(tabela.getValueAt(tabela.getSelectedRow(), 15).toString());
-        txtData.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
-        txtLocalizacao.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+        cbConteiner.setSelectedItem(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
+        txtData.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
+        txtLocalizacao.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
 
         Containeres c = new Containeres();
         ContaineresDAO daof = new ContaineresDAO();

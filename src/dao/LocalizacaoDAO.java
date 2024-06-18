@@ -101,12 +101,12 @@ public class LocalizacaoDAO {
                 obj.setConteiner(c);
 
             }//Fechamento do preechimento automático
-            return obj; //Retornar o objecto Cliente após a busca
+            return obj; //Retornar o objecto Conteiner após a busca
 
         } catch (SQLException erro) { //Caso alguma coisa deia errado
             JOptionPane.showMessageDialog(null, "Erro ao buscar a localização" + erro);
         }
-           return null;
+        return null;
     }
 
     public Localizacao BuscarLocalizacaoConteiner(String numConteiner) {
@@ -136,11 +136,11 @@ public class LocalizacaoDAO {
     }
 
     //Método para listar os clientes do Banco
-public List<Localizacao> Listar() {
-    List<Localizacao> lista = new ArrayList<>();
-         try {
-            String sql = "SELECT l.id_localizacao, l.id_container, l.data, l.localizacao, c.numContainer " +
-                            "FROM Localizacao_Conteineres as l INNER JOIN conteineres AS c ON (l.id_container = c.id_container)";
+    public List<Localizacao> Listar() {
+        List<Localizacao> lista = new ArrayList<>();
+        try {
+            String sql = "SELECT l.id_localizacao, l.id_container, l.data, l.localizacao, c.numContainer "
+                    + "FROM Localizacao_Conteineres as l INNER JOIN conteineres AS c ON (l.id_container = c.id_container)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -155,13 +155,12 @@ public List<Localizacao> Listar() {
                 lista.add(obj);//A variável lista servirá para adicionar o obj dentro da lista criada.
             }
 
-        return lista;
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Erro ao listar: " + e.getMessage());
+            return lista;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar: " + e.getMessage());
+        }
+        return null;
     }
-    return null;
-}
-
 
     public List<Localizacao> Filtrar(String nome) {
         List<Localizacao> lista = new ArrayList<>();

@@ -23,24 +23,25 @@ public class FormularioContainer extends javax.swing.JFrame {
     /**
      * Creates new form FormularioClientes
      */
-    public void listar(){
+    public void listar() {
         ContaineresDAO dao = new ContaineresDAO();
         List<Containeres> lista = dao.Listar();
         DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
         dados.setNumRows(0);
-        for(Containeres c : lista ){
+        for (Containeres c : lista) {
             dados.addRow(new Object[]{
-            c.getId_container(),
-            c.getNumContainer(),
-            c.getTipoContainer(),
-            c.getPeso(),
-            c.getDimensoes(),
-            c.getOrigem(),
-            c.getDestino()
-            
+                c.getId_container(),
+                c.getNumContainer(),
+                c.getTipoContainer(),
+                c.getPeso(),
+                c.getDimensoes(),
+                c.getOrigem(),
+                c.getDestino()
+
             });
         }
     }
+
     public FormularioContainer() {
         initComponents();
     }
@@ -235,12 +236,13 @@ public class FormularioContainer extends javax.swing.JFrame {
                     .addComponent(txtDimensoes, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
-                .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
+                .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
-                        .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)))
                 .addGap(298, 298, 298))
         );
 
@@ -349,6 +351,7 @@ public class FormularioContainer extends javax.swing.JFrame {
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Printer_2.png"))); // NOI18N
         btnImprimir.setText("IMPRIMIR");
+        btnImprimir.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -430,21 +433,21 @@ public class FormularioContainer extends javax.swing.JFrame {
 
     private void txtPesquisaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaNomeActionPerformed
         // Método para pesquisar e filtrar os dados da tabela pelo campo.
-        String numContainer = "%"+txtPesquisaNome.getText()+"%";
+        String numContainer = "%" + txtPesquisaNome.getText() + "%";
         ContaineresDAO dao = new ContaineresDAO();
         List<Containeres> lista = dao.Filtrar(numContainer);
         DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
         dados.setNumRows(0);
-        for(Containeres c : lista ){
+        for (Containeres c : lista) {
             dados.addRow(new Object[]{
-            c.getId_container(),
-            c.getNumContainer(),
-            c.getTipoContainer(),
-            c.getPeso(),
-            c.getDimensoes(),
-            c.getOrigem(),
-            c.getDestino()
-            
+                c.getId_container(),
+                c.getNumContainer(),
+                c.getTipoContainer(),
+                c.getPeso(),
+                c.getDimensoes(),
+                c.getOrigem(),
+                c.getDestino()
+
             });
         }
     }//GEN-LAST:event_txtPesquisaNomeActionPerformed
@@ -462,26 +465,26 @@ public class FormularioContainer extends javax.swing.JFrame {
         dao.Salvar(obj);
         Utilitarios util = new Utilitarios();
         util.LimpaTela(painelDadosPessoais);
-        
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-       String numContainer = txtNumero.getText();
-       Containeres obj = new Containeres();
-       ContaineresDAO dao = new ContaineresDAO();
-       
-       obj = dao.BuscarContaineres(numContainer);
-       if(obj.getNumContainer()!= null ){
-           txtCodigo.setText(String.valueOf(obj.getId_container()));
-           txtNumero.setText(obj.getNumContainer());
-           txtPeso.setText(String.valueOf(obj.getPeso())); //Tratamento do Double
-           txtTipo.setText(obj.getTipoContainer());
-           txtDimensoes.setText(obj.getDimensoes());
-           txtOrigem.setText(obj.getOrigem());
-           txtDestino.setText(obj.getDestino());
-       }else{
-           JOptionPane.showMessageDialog(null,"Fornecedor não encontrado!");
-       }
+        String numContainer = txtNumero.getText();
+        Containeres obj = new Containeres();
+        ContaineresDAO dao = new ContaineresDAO();
+
+        obj = dao.BuscarContaineres(numContainer);
+        if (obj.getNumContainer() != null) {
+            txtCodigo.setText(String.valueOf(obj.getId_container()));
+            txtNumero.setText(obj.getNumContainer());
+            txtPeso.setText(String.valueOf(obj.getPeso())); //Tratamento do Double
+            txtTipo.setText(obj.getTipoContainer());
+            txtDimensoes.setText(obj.getDimensoes());
+            txtOrigem.setText(obj.getOrigem());
+            txtDestino.setText(obj.getDestino());
+        } else {
+            JOptionPane.showMessageDialog(null, "Fornecedor não encontrado!");
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -496,39 +499,37 @@ public class FormularioContainer extends javax.swing.JFrame {
         List<Containeres> lista = dao.Filtrar(nome);
         DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
         dados.setNumRows(0);
-        for(Containeres c : lista ){
+        for (Containeres c : lista) {
             dados.addRow(new Object[]{
-            c.getId_container(),
-            c.getNumContainer(),
-            c.getTipoContainer(),
-            c.getPeso(),
-            c.getDimensoes(),
-            c.getOrigem(),
-            
-            });
+                c.getId_container(),
+                c.getNumContainer(),
+                c.getTipoContainer(),
+                c.getPeso(),
+                c.getDimensoes(),
+                c.getOrigem(),});
         }
 
     }//GEN-LAST:event_btnPesquisaNomeActionPerformed
 
     private void txtNumeroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyPressed
-        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
-                   String numContainer = txtNumero.getText();
-       Containeres obj = new Containeres();
-       ContaineresDAO dao = new ContaineresDAO();
-       
-       obj = dao.BuscarContaineres(numContainer);
-       if(obj.getNumContainer()!= null ){
-           txtCodigo.setText(String.valueOf(obj.getId_container()));
-           txtNumero.setText(obj.getNumContainer());
-           txtPeso.setText(String.valueOf(obj.getPeso())); //Tratamento do Double
-           txtTipo.setText(obj.getTipoContainer());
-           txtDimensoes.setText(obj.getDimensoes());
-           txtOrigem.setText(obj.getOrigem());
-           txtDestino.setText(obj.getDestino());
-       }else{
-           JOptionPane.showMessageDialog(null,"Fornecedor não encontrado!");
-       }
-            
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String numContainer = txtNumero.getText();
+            Containeres obj = new Containeres();
+            ContaineresDAO dao = new ContaineresDAO();
+
+            obj = dao.BuscarContaineres(numContainer);
+            if (obj.getNumContainer() != null) {
+                txtCodigo.setText(String.valueOf(obj.getId_container()));
+                txtNumero.setText(obj.getNumContainer());
+                txtPeso.setText(String.valueOf(obj.getPeso())); //Tratamento do Double
+                txtTipo.setText(obj.getTipoContainer());
+                txtDimensoes.setText(obj.getDimensoes());
+                txtOrigem.setText(obj.getOrigem());
+                txtDestino.setText(obj.getDestino());
+            } else {
+                JOptionPane.showMessageDialog(null, "Conteiner não encontrado!");
+            }
+
         }
     }//GEN-LAST:event_txtNumeroKeyPressed
 
@@ -540,12 +541,12 @@ public class FormularioContainer extends javax.swing.JFrame {
         obj.setDimensoes(txtDimensoes.getText());
         obj.setOrigem(txtOrigem.getText());
         obj.setDestino(txtDestino.getText());
-        
+
         ContaineresDAO dao = new ContaineresDAO();
         dao.Editar(obj);
         Utilitarios util = new Utilitarios();
         util.LimpaTela(painelDadosPessoais);
-      
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -554,7 +555,7 @@ public class FormularioContainer extends javax.swing.JFrame {
         ContaineresDAO dao = new ContaineresDAO();
         dao.Excluir(obj);
         Utilitarios util = new Utilitarios();
-        util.LimpaTela(painelDadosPessoais );
+        util.LimpaTela(painelDadosPessoais);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
@@ -569,22 +570,22 @@ public class FormularioContainer extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void txtPesquisaNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaNomeKeyReleased
-         // Método para pesquisar e filtrar os dados da tabela pelo botão Pesquisar.
-        String numContainer = "%"+txtPesquisaNome.getText()+"%";
+        // Método para pesquisar e filtrar os dados da tabela pelo botão Pesquisar.
+        String numContainer = "%" + txtPesquisaNome.getText() + "%";
         ContaineresDAO dao = new ContaineresDAO();
         List<Containeres> lista = dao.Filtrar(numContainer);
         DefaultTableModel dados = (DefaultTableModel) tabela.getModel();
         dados.setNumRows(0);
-        for(Containeres c : lista ){
+        for (Containeres c : lista) {
             dados.addRow(new Object[]{
-            c.getId_container(),
-            c.getNumContainer(),
-            c.getTipoContainer(),
-            c.getPeso(),
-            c.getDimensoes(),
-            c.getOrigem(),
-            c.getDestino()
-            
+                c.getId_container(),
+                c.getNumContainer(),
+                c.getTipoContainer(),
+                c.getPeso(),
+                c.getDimensoes(),
+                c.getOrigem(),
+                c.getDestino()
+
             });
         }
     }//GEN-LAST:event_txtPesquisaNomeKeyReleased

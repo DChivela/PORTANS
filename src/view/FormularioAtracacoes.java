@@ -295,6 +295,7 @@ public class FormularioAtracacoes extends javax.swing.JFrame {
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Printer_2.png"))); // NOI18N
         btnImprimir.setText("IMPRIMIR");
+        btnImprimir.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
