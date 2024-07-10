@@ -53,13 +53,14 @@ public class LocalizacaoDAO {
     public void Editar(Localizacao obj) {
         try {
             //1º Criar o SQL
-            String sql = "update Localizacao_Conteineres set id_localizacao =?, Id_container=?, data=?, localizacao=?";
+            String sql = "update Localizacao_Conteineres set Id_container=?, data=?, localizacao=? where id_localizacao=?";
             //2ºPreparar a conexão SQL para se conectar com o Banco
             PreparedStatement stmt = conn.prepareStatement(sql);
             //3º Inserir os dados
             stmt.setInt(1, obj.getConteiner().getId_container());
             stmt.setString(2, obj.getData());
             stmt.setString(3, obj.getLocalizacao());
+            stmt.setInt(4, obj.getId());
             //3ºExecutar 
             stmt.execute();
             //4ºFechar conexão

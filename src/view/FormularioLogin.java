@@ -90,7 +90,6 @@ public class FormularioLogin extends javax.swing.JFrame {
             }
         });
 
-        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigest/imagens/Login.png"))); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,8 +97,12 @@ public class FormularioLogin extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sigest/imagens/Cancel_2.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,7 +163,13 @@ public class FormularioLogin extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Erro:" +e);
         }
+        
+        dispose();
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

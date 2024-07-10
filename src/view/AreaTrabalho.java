@@ -8,6 +8,7 @@ package view;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -179,6 +180,11 @@ public class AreaTrabalho extends javax.swing.JFrame {
 
         jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem9.setText("Trocar Usuário");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem9);
 
         jMenuBar1.add(jMenu6);
@@ -188,6 +194,11 @@ public class AreaTrabalho extends javax.swing.JFrame {
 
         jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem10.setText("Sair do Sistema");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem10);
 
         jMenuBar1.add(jMenu7);
@@ -248,6 +259,21 @@ public class AreaTrabalho extends javax.swing.JFrame {
         ff.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        FormularioLogin fl = new FormularioLogin();
+        fl.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        int janela = JOptionPane.showConfirmDialog(null, "Deseja realmente sair do sistema?");
+        if (janela == 0) {
+            System.exit(0);
+        } else if (janela == 2) {
+            JOptionPane.showMessageDialog(null, "Cancelando...");
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -282,6 +308,8 @@ public class AreaTrabalho extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;

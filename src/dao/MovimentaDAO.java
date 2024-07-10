@@ -1,4 +1,4 @@
-/*
+/*x
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -55,16 +55,17 @@ public class MovimentaDAO {
     public void Editar(Movimenta obj) {
         try {
             //1º Criar o SQL
-            String sql = "update Movimentacoes_Carga set IDMov=?, IDContainer=?, Data=?, tipoMov=?, LocalOrigem=?, LocalDestino=?, where IDMov=?";
+            String sql = "update Movimentacoes_Carga set IDContainer=?, Data=?, tipoMov=?, LocalOrigem=?, LocalDestino=? where IDMov=?";
             //2ºPreparar a conexão SQL para se conectar com o Banco
             PreparedStatement stmt = conn.prepareStatement(sql);
             //3º Inserir os dados
-            stmt.setInt(1, obj.getIDMov());
-            stmt.setInt(2, obj.getConteiner().getId_container());
-            stmt.setString(3, obj.getData());
-            stmt.setString(4, obj.getTipoMov());
-            stmt.setString(5, obj.getLocalOrigem());
-            stmt.setString(6, obj.getLocalDestino());
+//            stmt.setInt(7, obj.getIDMov());
+            stmt.setInt(1, obj.getConteiner().getId_container());
+            stmt.setString(2, obj.getData());
+            stmt.setString(3, obj.getTipoMov());
+            stmt.setString(4, obj.getLocalOrigem());
+            stmt.setString(5, obj.getLocalDestino());
+            stmt.setInt(6, obj.getIDMov());
             //3ºExecutar 
             stmt.execute();
             //4ºFechar conexão
@@ -88,28 +89,7 @@ public class MovimentaDAO {
         }
     }
 
-//   public Movimenta BuscarMovTipo(String Tipo){
-//       try {
-//           String sql = "select * from Movimentacoes_Carga where IDMov = ?";
-//           PreparedStatement stmt = conn.prepareStatement(sql);
-//           stmt.setString(1, Tipo);
-//           ResultSet rs = stmt.executeQuery();
-//           Movimenta obj = new Movimenta();
-//           if(rs.next()){
-//               obj.setIDMov(rs.getInt("IDMov"));
-//               obj.setIDContainer(rs.getInt("IDContainer"));
-//               obj.setData(rs.getString("Data"));
-//               obj.setTipoMov(rs.getString("tipoMov"));
-//               obj.setLocalOrigem(rs.getString("LocalOrigem"));
-//               obj.setLocalDestino(rs.getString("LocalDestino")); 
-//           }//Fechamento do preechimento automático
-//           return obj; //Retornar o objecto Cliente após a busca
-//           
-//       } catch (SQLException erro) { //Caso alguma coisa deia errado
-//           JOptionPane.showMessageDialog(null, "Erro ao buscar a movimentação"+ erro);
-//       }
-//       return null;
-//    }
+
     //Método para listar os clientes do Banco
     public List<Movimenta> Listar() {
         List<Movimenta> lista = new ArrayList<>();

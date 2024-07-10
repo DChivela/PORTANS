@@ -53,7 +53,7 @@ public class ContaineresDAO {
       public void Editar(Containeres obj){
        try {
            //1º Criar o SQL
-           String sql = "update Containeres set id_container=?, numContainer=?, tipoContainer=?, peso=?, dimensoes=?, origem=?, destino=? where id_container=?";
+           String sql = "update Conteineres set numContainer=?, tipoContainer=?, peso=?, dimensoes=?, origem=?, destino=? where id_container=?";
            //2ºPreparar a conexão SQL para se conectar com o Banco
            PreparedStatement stmt = conn.prepareStatement(sql);
            stmt.setString(1,obj.getNumContainer());
@@ -62,7 +62,7 @@ public class ContaineresDAO {
            stmt.setString(4,obj.getDimensoes());
            stmt.setString(5,obj.getOrigem());
            stmt.setString(6,obj.getDestino());
-           stmt.setInt(13,obj.getId_container());
+           stmt.setInt(7,obj.getId_container());
            //3ºExecutar 
            stmt.execute();
            //4ºFechar conexão

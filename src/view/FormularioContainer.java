@@ -541,6 +541,7 @@ public class FormularioContainer extends javax.swing.JFrame {
         obj.setDimensoes(txtDimensoes.getText());
         obj.setOrigem(txtOrigem.getText());
         obj.setDestino(txtDestino.getText());
+        obj.setId_container(Integer.valueOf(txtCodigo.getText()));
 
         ContaineresDAO dao = new ContaineresDAO();
         dao.Editar(obj);
@@ -562,8 +563,8 @@ public class FormularioContainer extends javax.swing.JFrame {
         Painel_Guias.setSelectedIndex(0);
         txtCodigo.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
         txtNumero.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
-        txtPeso.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
-        txtTipo.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
+        txtPeso.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
+        txtTipo.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
         txtDimensoes.setText(tabela.getValueAt(tabela.getSelectedRow(), 4).toString());
         txtOrigem.setText(tabela.getValueAt(tabela.getSelectedRow(), 5).toString());
         txtDestino.setText(tabela.getValueAt(tabela.getSelectedRow(), 6).toString());
